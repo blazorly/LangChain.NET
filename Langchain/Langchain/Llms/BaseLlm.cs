@@ -23,7 +23,6 @@ namespace Langchain.Llms
         public LLMResult Call(string prompt, List<string> stop = null)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters["self"] = PyInstance;
             parameters["prompt"] = prompt;
             parameters["stop"] = stop != null ? ToList(stop.ToArray()) : null;
 
@@ -34,7 +33,6 @@ namespace Langchain.Llms
         public LLMResult Generate(List<string> prompts, List<string> stop = null)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters["self"] = PyInstance;
             parameters["prompts"] = ToList(prompts.ToArray());
             parameters["stop"] = stop != null ? ToList(stop.ToArray()) : null;
 
@@ -45,11 +43,9 @@ namespace Langchain.Llms
         public int GetNumTokens(string text)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters["self"] = PyInstance;
             parameters["text"] = text;
 
             PyObject py = InvokeMethod("get_num_tokens", parameters);
-            //PyObject py = PyInstance.get_num_tokens(PyInstance, text);
             return py.As<int>();
         }
     }

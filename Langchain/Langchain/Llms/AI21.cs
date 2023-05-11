@@ -8,11 +8,11 @@ namespace Langchain.Llms
 {
     public class AI21 : BaseLlm
     {
-        public AI21(string model = "j2-jumbo-instruct") 
+        public AI21(string model = "j2-jumbo-instruct", string ai21_api_key = null) 
         {
-            Parameters["model"] = model;
+            this["model"] = model;
 
-            PyInstance = Instance.langchain.llms.AI21;
+            PyInstance = Instance.langchain.llms.AI21(model: model, ai21_api_key: ai21_api_key);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Langchain
             }
 
             if (Parameters.Count > 0)
-                return PyInstance.Invoke(pyargs, kwargs);
+                return PyInstance(pyargs);
             else
                 return PyInstance.Invoke(null, null);
         }
