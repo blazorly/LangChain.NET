@@ -29,20 +29,20 @@ namespace Langchain
             if (!PythonEngine.IsInitialized)
                 PythonEngine.Initialize();
 
-            sys = Py.Import("sys");
-            if (DisablePySysConsoleLog && !alreadyDisabled)
-            {
-                string codeToRedirectOutput =
-                "import sys\n" +
-                "from io import StringIO\n" +
-                "sys.stdout = mystdout = StringIO()\n" +
-                "sys.stdout.flush()\n" +
-                "sys.stderr = mystderr = StringIO()\n" +
-                "sys.stderr.flush()\n";
+            //sys = Py.Import("sys");
+            //if (DisablePySysConsoleLog && !alreadyDisabled)
+            //{
+            //    string codeToRedirectOutput =
+            //    "import sys\n" +
+            //    "from io import StringIO\n" +
+            //    "sys.stdout = mystdout = StringIO()\n" +
+            //    "sys.stdout.flush()\n" +
+            //    "sys.stderr = mystderr = StringIO()\n" +
+            //    "sys.stderr.flush()\n";
 
-                PythonEngine.RunSimpleString(codeToRedirectOutput);
-                alreadyDisabled = true;
-            }
+            //    PythonEngine.RunSimpleString(codeToRedirectOutput);
+            //    alreadyDisabled = true;
+            //}
 
             var mod = Py.Import(module);
             return mod;
