@@ -2,10 +2,12 @@
 
 using Langchain.Llms;
 using Langchain.Schema;
+using Python.Runtime;
 
 try
 {
-    var llm = new AI21();
+    var llm = new AI21(ai21_api_key: "aaaa");
+    var result = await llm.AGenerate(new List<string>() { "hello" });
     var info = llm.GetNumTokens("this is deepak");
 }
 catch(Exception ex)

@@ -30,6 +30,17 @@ namespace Langchain.Llms
             return new LLMResult(py);
         }
 
+        public async Task<LLMResult> AGenerate(List<string> prompts, List<string> stop = null)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters["prompts"] = ToList(prompts.ToArray());
+            parameters["stop"] = stop != null ? ToList(stop.ToArray()) : null;
+
+            dynamic py = await PyInstance.agenerate(parameters["prompts"], parameters["stop"]); //InvokeMethod("agenerate", parameters);
+            var w = py.close();
+            return new LLMResult(py);
+        }
+
         public LLMResult Generate(List<string> prompts, List<string> stop = null)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
